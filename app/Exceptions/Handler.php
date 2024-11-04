@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Helpers\Response;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use Response;
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
      *
@@ -26,5 +29,10 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+    {
+        return $this->error('Unauthorized', 401);
     }
 }
