@@ -11,4 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class UserFcmToken extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

@@ -32,7 +32,7 @@ class AuthController extends Controller
         $user = User::where('username', $username)->first();
 
         if (!$user) {
-            return $this->error('You have not account, Please register', 404);
+            return $this->error('You have not account, Please contact with Admins', 404);
         }
 
         if (!Hash::check($password, $user->password)) {
