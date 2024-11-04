@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FireBaseController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
@@ -40,6 +41,12 @@ Route::prefix('/user')
                     Route::get('/', [NotificationController::class, 'index']);
                     Route::get('/{id}', [NotificationController::class, 'detail']);
                     Route::get('/read/all', [NotificationController::class, 'readAll']);
+                });
+
+            Route::prefix('/attendance')
+                ->group(function () {
+                    Route::post('/', [MainController::class, 'attendance']);
+                    Route::post('/history', [MainController::class, 'history']);
                 });
         });
     });
