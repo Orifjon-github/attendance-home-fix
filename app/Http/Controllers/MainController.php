@@ -20,7 +20,7 @@ class MainController extends Controller
     public function history(Request $request): JsonResponse
     {
         $user = $request->user();
-        $attendance = $user->attendances();
+        $attendance = $user->attendances()->get();
 
         return $this->success(AttendanceResource::collection($attendance));
     }
