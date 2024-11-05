@@ -46,7 +46,7 @@ Route::prefix('/user')
             Route::prefix('/attendance')
                 ->group(function () {
                     Route::post('/', [MainController::class, 'attendance']);
-                    Route::post('/history', [MainController::class, 'history']);
+                    Route::get('/history', [MainController::class, 'history']);
                 });
         });
     });
