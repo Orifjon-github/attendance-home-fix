@@ -13,6 +13,11 @@ class MainController extends Controller
     public function attendance(Request $request): JsonResponse
     {
         $user = $request->user();
+        $type = $request->input('type');
+        if ($type == 'come' && $user->in_office) return $this->error('Status and type mismatch');
+        if ($type == 'went' && !$user->in_office) return $this->error('Status and type mismatch');
+        $user->in_office = $type == 'come' ? '1' : '0';
+        $user->save();
         $user->attendances()->create($request->all());
         return $this->success(['message' => 'Attendance added successfully.']);
     }

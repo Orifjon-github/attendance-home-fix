@@ -15,6 +15,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $wallet
  * @property mixed $provider
  * @property mixed $branch
+ * @property mixed $in_office
  */
 class UserResource extends JsonResource
 {
@@ -30,6 +31,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'username' => $this->username,
             'branch' => $this->branch,
+            'in_office' => (bool)$this->in_office,
             'image' => env('APP_URL') . $this->image
         ];
     }
